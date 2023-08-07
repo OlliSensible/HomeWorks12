@@ -8,7 +8,7 @@ public class TimerApp {
                 System.out.println("Time elapsed: " + seconds + " seconds");
                 seconds++;
                 try {
-                    Thread.sleep(1000); // Почекати 1 секунду
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -18,12 +18,12 @@ public class TimerApp {
         Thread messageThread = new Thread(() -> {
             int counter = 0;
             while (true) {
-                if (counter % 5 == 0) {
+                if (counter % 5 == 0 && counter > 0) {
                     System.out.println("Минуло 5 секунд");
                 }
                 counter++;
                 try {
-                    Thread.sleep(1000); // Почекати 1 секунду
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

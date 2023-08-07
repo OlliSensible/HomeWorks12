@@ -3,12 +3,12 @@ package fizzbuzz;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
-public class NumberProcesor extends Thread{
+public class NumberProcessor extends Thread{
     private Consumer<Integer> processor;
     private int n;
-    private AtomicBoolean isNProcessed;
+    private AtomicBoolean isNProcessed = new AtomicBoolean(true);
 
-    public NumberProcesor(Consumer<Integer> processor){
+    public NumberProcessor(Consumer<Integer> processor){
         this.processor = processor;
     }
 
@@ -17,19 +17,23 @@ public class NumberProcesor extends Thread{
         isNProcessed.set(false);
     }
 
+    public boolean isNProcessed(){
+        return isNProcessed.get();
+    }
+
     @Override
     public void run() {
-       while (true){
-           try {
-               Thread.sleep(100);
-           } catch (InterruptedException e) {
-               throw new RuntimeException(e);
-           }
-           if (isNProcessed.get()) {
-               continue;
-           }
-           processor.accept(n);
-           isNProcessed.set(true);
-       }
+        while (true){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if (isNProcessed.get()) {
+                continue;
+            }
+            processor.accept(n);
+            isNProcessed.set(true);
+        }
     }
 }

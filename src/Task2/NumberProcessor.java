@@ -1,4 +1,4 @@
-package fizzbuzz;
+package Task2;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
